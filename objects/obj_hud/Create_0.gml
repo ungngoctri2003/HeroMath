@@ -1,4 +1,9 @@
-level_start_ms = current_time;
+if (variable_global_exists("new_run_from_menu") && global.new_run_from_menu) {
+	global.run_start_ms = current_time;
+} else if (!variable_global_exists("run_start_ms")) {
+	global.run_start_ms = current_time;
+}
+level_start_ms = global.run_start_ms;
 
 if (!variable_global_exists("game_over")) {
 	global.game_over = false;

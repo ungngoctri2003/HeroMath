@@ -34,7 +34,8 @@ _hm = max(1, _hm);
 _hp = clamp(_hp, 0, _hm);
 var sc = variable_global_exists("score") ? global.score : 0;
 
-var elapsed = (current_time - level_start_ms) / 1000;
+var _t0 = variable_global_exists("run_start_ms") ? global.run_start_ms : level_start_ms;
+var elapsed = (current_time - _t0) / 1000;
 var mm = floor(elapsed / 60);
 var ss = floor(elapsed mod 60);
 var sec_str = string(ss);
