@@ -1,0 +1,9 @@
+vsp = 0;
+grav = 0.5;
+jump = -10;
+move_speed = 4;
+spr_idle = spr_character_dung_yen;
+attacking = false;
+attack_timer = 0;
+idle_image_speed = 1;
+attack_image_speed = 0.08;

@@ -1,0 +1,10 @@
+var _cx = room_width * 0.5;
+var _cy = room_height * 0.42;
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_set_color(c_white);
+draw_text_transformed(_cx, _cy - 48, "HeroMath", 3, 3, 0);
+draw_set_color(make_color_rgb(220, 220, 220));
+draw_text(_cx, _cy + 56, "Nhan Space, Enter hoac chuot trai de bat dau");
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
