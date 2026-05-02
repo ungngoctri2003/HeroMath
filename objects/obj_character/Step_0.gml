@@ -56,6 +56,17 @@ if (room == RoomStart) {
 	return;
 }
 
+if (room == RoomEnding) {
+	vsp = 0;
+	sprite_index = spr_character_dung_yen;
+	image_speed = idle_image_speed;
+	attacking = false;
+	image_xscale = 1;
+	global.hp = hp;
+	global.hp_max = hp_max;
+	return;
+}
+
 if (!attacking && (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right))
 	&& !(variable_global_exists("game_over") && global.game_over)) {
 	attacking = true;

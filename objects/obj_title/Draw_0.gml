@@ -99,7 +99,7 @@ if (global.font_start_vn != -1) {
 draw_set_color(make_color_rgb(82, 155, 235));
 draw_text_transformed(_px, _py - 38, "Anh hùng toán học", 1.85, 1.85, 0);
 draw_set_color(make_color_rgb(92, 82, 70));
-draw_text_ext(_px, _py + 44, "Tiêu diệt quái & Giải cứu công chúa", -1, _pw - 48);
+draw_text_ext(_px, _py + 44, "Tiêu diệt quái thú & Giải cứu công chúa", -1, _pw - 48);
 
 // Nut choi ngay
 var bx1 = btn_x1;
