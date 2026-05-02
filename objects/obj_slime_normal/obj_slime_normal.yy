@@ -1,13 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"obj_title",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_slime_normal",
+  "eventList":[],
   "managed":true,
-  "name":"obj_title",
+  "name":"obj_slime_normal",
   "overriddenProperties":[],
   "parent":{
     "name":"HeroMath",
@@ -31,7 +27,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_slime_normal",
+    "path":"sprites/spr_slime_normal/spr_slime_normal.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

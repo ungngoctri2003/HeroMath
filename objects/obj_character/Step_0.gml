@@ -3,27 +3,10 @@ if (mouse_check_button_pressed(mb_left) && !attacking) {
 	sprite_index = spr_charater_danh;
 	image_index = 0;
 	image_speed = attack_image_speed;
-	attack_timer = ceil(sprite_get_number(spr_charater_danh) / attack_image_speed);
-} else if (attacking) {
-	attack_timer -= 1;
-	if (attack_timer <= 0) {
-		attacking = false;
-		sprite_index = spr_idle;
-		image_index = 0;
-		image_speed = idle_image_speed;
-	}
 }
 
 var move = keyboard_check(vk_right) - keyboard_check(vk_left);
 var hsp = move * move_speed;
-
-if (!attacking) {
-	if (sprite_index != spr_idle) {
-		sprite_index = spr_idle;
-		image_index = 0;
-	}
-	image_speed = idle_image_speed;
-}
 
 x += hsp;
 if (hsp != 0) {
@@ -71,4 +54,27 @@ if (move != 0 && image_xscale != move) {
 
 if (place_meeting(x, y + 1, obj_ground)) {
 	x = round(x);
+}
+
+if (attacking && sprite_index == spr_charater_danh) {
+	image_speed = 0;
+	var n = image_number;
+	image_index += attack_image_speed;
+	if (image_index >= n) {
+		attacking = false;
+		image_index = 0;
+	}
+}
+
+if (!attacking) {
+	var spr_target = (move != 0) ? spr_walk : spr_idle;
+	if (sprite_index != spr_target) {
+		sprite_index = spr_target;
+		image_index = 0;
+	}
+	if (sprite_index == spr_walk) {
+		image_speed = walk_image_speed;
+	} else {
+		image_speed = idle_image_speed;
+	}
 }

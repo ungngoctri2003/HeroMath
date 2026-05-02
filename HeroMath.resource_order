@@ -3,6 +3,10 @@
   "ResourceOrderSettings":[
     {"name":"obj_character","order":15,"path":"objects/obj_character/obj_character.yy",},
     {"name":"obj_ground","order":16,"path":"objects/obj_ground/obj_ground.yy",},
+    {"name":"obj_ladybug_rest","order":21,"path":"objects/obj_ladybug_rest/obj_ladybug_rest.yy",},
+    {"name":"obj_slime_fire","order":24,"path":"objects/obj_slime_fire/obj_slime_fire.yy",},
+    {"name":"obj_slime_normal","order":23,"path":"objects/obj_slime_normal/obj_slime_normal.yy",},
+    {"name":"obj_worm_normal","order":22,"path":"objects/obj_worm_normal/obj_worm_normal.yy",},
     {"name":"Backgroud_room_1","order":9,"path":"sprites/Backgroud_room_1/Backgroud_room_1.yy",},
     {"name":"dat_giua","order":14,"path":"sprites/dat_giua/dat_giua.yy",},
     {"name":"spr_character_bi_danh","order":4,"path":"sprites/spr_character_bi_danh/spr_character_bi_danh.yy",},
@@ -10,5 +14,9 @@
     {"name":"spr_character_die","order":1,"path":"sprites/spr_character_die/spr_character_die.yy",},
     {"name":"spr_character_dung_yen","order":3,"path":"sprites/spr_character_dung_yen/spr_character_dung_yen.yy",},
     {"name":"spr_charater_danh","order":6,"path":"sprites/spr_charater_danh/spr_charater_danh.yy",},
+    {"name":"spr_ladybug_rest","order":20,"path":"sprites/spr_ladybug_rest/spr_ladybug_rest.yy",},
+    {"name":"spr_slime_fire","order":18,"path":"sprites/spr_slime_fire/spr_slime_fire.yy",},
+    {"name":"spr_slime_normal","order":19,"path":"sprites/spr_slime_normal/spr_slime_normal.yy",},
+    {"name":"spr_worm_normal","order":17,"path":"sprites/spr_worm_normal/spr_worm_normal.yy",},
   ],
 }

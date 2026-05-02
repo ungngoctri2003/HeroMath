@@ -62,7 +62,7 @@
     },
     "name":"spr_character_chay",
     "playback":1,
-    "playbackSpeed":999.0,
+    "playbackSpeed":20.0,
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
