@@ -6,8 +6,8 @@
   "name":"obj_ong",
   "overriddenProperties":[],
   "parent":{
-    "name":"HeroMath",
-    "path":"HeroMath.yyp",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":{
     "name":"obj_par_enemy",

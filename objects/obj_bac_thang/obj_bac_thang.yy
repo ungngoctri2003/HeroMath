@@ -6,8 +6,8 @@
   "name":"obj_bac_thang",
   "overriddenProperties":[],
   "parent":{
-    "name":"HeroMath",
-    "path":"HeroMath.yyp",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

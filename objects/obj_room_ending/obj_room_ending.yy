@@ -11,8 +11,8 @@
   "name":"obj_room_ending",
   "overriddenProperties":[],
   "parent":{
-    "name":"HeroMath",
-    "path":"HeroMath.yyp",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

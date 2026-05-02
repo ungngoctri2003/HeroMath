@@ -63,8 +63,8 @@
   ],
   "name":"Room1",
   "parent":{
-    "name":"HeroMath",
-    "path":"HeroMath.yyp",
+    "name":"Rooms",
+    "path":"folders/Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

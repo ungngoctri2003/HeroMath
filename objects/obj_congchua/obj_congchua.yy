@@ -9,8 +9,8 @@
   "name":"obj_congchua",
   "overriddenProperties":[],
   "parent":{
-    "name":"HeroMath",
-    "path":"HeroMath.yyp",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,
