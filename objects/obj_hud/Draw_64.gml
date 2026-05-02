@@ -60,8 +60,8 @@ var bar_x1 = inner_l;
 var bar_x2 = inner_l + hp_block_w;
 
 var track = make_color_rgb(48, 36, 42);
-var fill_a = make_color_rgb(86, 196, 102);
-var fill_b = make_color_rgb(58, 168, 90);
+var fill_a = make_color_rgb(240, 72, 72);
+var fill_b = make_color_rgb(176, 32, 40);
 draw_roundrect_colour_ext(bar_x1, bar_y, bar_x2, bar_y + bar_h, 8, 8, track, track, false);
 var pw = (bar_x2 - bar_x1) * (_hp / _hm);
 if (pw > 2) {
@@ -96,8 +96,8 @@ draw_roundrect_colour_ext(px1, py1, px2, py1 + pill_h, pill_h * 0.5, pill_h * 0.
 draw_roundrect_ext(px1, py1, px2, py1 + pill_h, pill_h * 0.5, pill_h * 0.5, true);
 
 var score_line_scale = 0.82;
-var score_lbl = "Điểm số: ";
-var score_val = string(sc);
+var score_lbl = "ĐIỂM SỐ: ";
+var score_val = string_upper(string(sc));
 var w_lbl = string_width(score_lbl) * score_line_scale;
 var w_val = string_width(score_val) * score_line_scale;
 var score_row_y = py1 + pill_h * 0.5;

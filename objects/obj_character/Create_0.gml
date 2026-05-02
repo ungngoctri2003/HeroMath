@@ -9,7 +9,14 @@ walk_image_speed = 0.2;
 idle_image_speed = 1;
 attack_image_speed = 0.15;
 hp_max = 100;
-hp = hp_max;
+if (variable_global_exists("new_run_from_menu") && global.new_run_from_menu) {
+	global.new_run_from_menu = false;
+	hp = hp_max;
+} else if (variable_global_exists("hp") && is_real(global.hp) && global.hp > 0) {
+	hp = clamp(round(global.hp), 1, hp_max);
+} else {
+	hp = hp_max;
+}
 global.hp = hp;
 global.hp_max = hp_max;
 attack_damage_done = false;

@@ -46,7 +46,17 @@ if (variable_global_exists("quiz_active") && global.quiz_active) {
 	return;
 }
 
-if (!attacking && mouse_check_button_pressed(mb_right)
+if (room == RoomStart) {
+	sprite_index = spr_character_dung_yen;
+	image_speed = idle_image_speed;
+	attacking = false;
+	image_xscale = 1;
+	global.hp = hp;
+	global.hp_max = hp_max;
+	return;
+}
+
+if (!attacking && (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right))
 	&& !(variable_global_exists("game_over") && global.game_over)) {
 	attacking = true;
 	attack_damage_done = true;
@@ -68,19 +78,30 @@ if (hsp != 0) {
 	}
 }
 
-var feet_on_bac_surface = false;
+var feet_on_jump_surface = false;
 with (obj_bac_thang) {
 	if ((other.bbox_right > bbox_left) && (other.bbox_left < bbox_right)) {
 		var _ptop = bbox_top;
-		if (other.bbox_bottom >= _ptop - 10 && other.bbox_bottom <= _ptop + 14) {
-			feet_on_bac_surface = true;
+		var _pbot = bbox_bottom;
+		var _feet_lo = _ptop - 14;
+		var _feet_hi = (abs(image_angle) > 0.01) ? (_pbot + 14) : (_ptop + 18);
+		if (other.bbox_bottom >= _feet_lo && other.bbox_bottom <= _feet_hi) {
+			feet_on_jump_surface = true;
+		}
+	}
+}
+with (obj_dat) {
+	if ((other.bbox_right > bbox_left) && (other.bbox_left < bbox_right)) {
+		var _ptopd = bbox_top;
+		if (other.bbox_bottom >= _ptopd - 14 && other.bbox_bottom <= _ptopd + 18) {
+			feet_on_jump_surface = true;
 		}
 	}
 }
 
-if (keyboard_check_pressed(vk_space) && (place_meeting(x, y + 1, obj_ground) || feet_on_bac_surface)) {
+if ((keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_up)) && (place_meeting(x, y + 1, obj_ground) || feet_on_jump_surface)) {
 	vsp = jump;
-} else if ((place_meeting(x, y + 1, obj_ground) || feet_on_bac_surface) && vsp >= 0) {
+} else if ((place_meeting(x, y + 1, obj_ground) || feet_on_jump_surface) && vsp >= 0) {
 	vsp = 0;
 } else {
 	vsp += grav;
@@ -100,15 +121,37 @@ if (place_meeting(x, y, obj_ground)) {
 	vsp = 0;
 }
 
-// Bậc thang một chiều: chỉ đậu khi rơi/xuống từ phía trên mặt bục; đi ngang xuyên qua
+// Bậc thang / mặt đá (obj_bac_thang + obj_dat): đậu từ phía trên như một chiều
 if (vsp >= 0) {
-	var inst_bt = instance_place(x, y, obj_bac_thang);
-	if (inst_bt != noone) {
-		var plat_top = inst_bt.bbox_top;
+	var inst_plat = instance_place(x, y, obj_bac_thang);
+	if (inst_plat == noone) {
+		inst_plat = instance_place(x, y, obj_dat);
+	}
+	if (inst_plat == noone && vsp > 0.25) {
+		var _scan = min(ceil(vsp) + 14, 56);
+		for (var _si = 1; _si <= _scan && inst_plat == noone; _si++) {
+			inst_plat = instance_place(x, y - _si, obj_bac_thang);
+			if (inst_plat == noone) {
+				inst_plat = instance_place(x, y - _si, obj_dat);
+			}
+		}
+	}
+	if (inst_plat != noone) {
+		var plat_top = inst_plat.bbox_top;
+		var plat_bot = inst_plat.bbox_bottom;
 		var prev_bottom = bbox_bottom - vsp;
-		var horiz_ok = (bbox_right > inst_bt.bbox_left && bbox_left < inst_bt.bbox_right);
-		var on_surface = (bbox_bottom >= plat_top - 6 && bbox_bottom <= plat_top + 22);
-		if (horiz_ok && on_surface && prev_bottom <= plat_top + 14) {
+		var horiz_ok = (bbox_right > inst_plat.bbox_left && bbox_left < inst_plat.bbox_right);
+		var _ang = inst_plat.image_angle;
+		var top_lo = plat_top - 8;
+		var top_hi = plat_top + 26;
+		var prev_max = plat_top + 20;
+		if (abs(_ang) > 0.01) {
+			top_hi = plat_bot + 20;
+			prev_max = plat_bot + 16;
+		}
+		var on_surface = (bbox_bottom >= top_lo && bbox_bottom <= top_hi);
+		var from_above = (prev_bottom <= prev_max);
+		if (horiz_ok && on_surface && from_above) {
 			y += plat_top - bbox_bottom;
 			vsp = 0;
 		}
@@ -128,17 +171,28 @@ if (move != 0 && image_xscale != move) {
 	}
 }
 
-feet_on_bac_surface = false;
+feet_on_jump_surface = false;
 with (obj_bac_thang) {
 	if ((other.bbox_right > bbox_left) && (other.bbox_left < bbox_right)) {
 		var _ptop2 = bbox_top;
-		if (other.bbox_bottom >= _ptop2 - 10 && other.bbox_bottom <= _ptop2 + 14) {
-			feet_on_bac_surface = true;
+		var _pbot2 = bbox_bottom;
+		var _feet_lo2 = _ptop2 - 14;
+		var _feet_hi2 = (abs(image_angle) > 0.01) ? (_pbot2 + 14) : (_ptop2 + 18);
+		if (other.bbox_bottom >= _feet_lo2 && other.bbox_bottom <= _feet_hi2) {
+			feet_on_jump_surface = true;
+		}
+	}
+}
+with (obj_dat) {
+	if ((other.bbox_right > bbox_left) && (other.bbox_left < bbox_right)) {
+		var _ptop2d = bbox_top;
+		if (other.bbox_bottom >= _ptop2d - 14 && other.bbox_bottom <= _ptop2d + 18) {
+			feet_on_jump_surface = true;
 		}
 	}
 }
 
-if (place_meeting(x, y + 1, obj_ground) || feet_on_bac_surface) {
+if (place_meeting(x, y + 1, obj_ground) || feet_on_jump_surface) {
 	x = round(x);
 }
 
@@ -155,9 +209,28 @@ if (_enemy_count > 0) {
 	}
 }
 
-if (!attacking && !dead && hurt_timer <= 0 && !(variable_global_exists("game_over") && global.game_over) && (!variable_global_exists("quiz_cooldown") || global.quiz_cooldown <= 0)) {
+if (!dead && hurt_timer <= 0 && !(variable_global_exists("game_over") && global.game_over) && (!variable_global_exists("quiz_cooldown") || global.quiz_cooldown <= 0)) {
 	var e = instance_place(x, y, obj_par_enemy);
+	if (e == noone) {
+		var _padx = 24;
+		var _pady = 40;
+		e = collision_rectangle(bbox_left - _padx, bbox_top - _pady, bbox_right + _padx, bbox_bottom + _pady, obj_par_enemy, false, true);
+	}
+	if (e != noone && e.object_index == obj_dat) {
+		var _standing_on_dat = false;
+		if (bbox_right > e.bbox_left && bbox_left < e.bbox_right) {
+			var _dtop = e.bbox_top;
+			if (bbox_bottom >= _dtop - 10 && bbox_bottom <= _dtop + 14) {
+				_standing_on_dat = true;
+			}
+		}
+		if (_standing_on_dat) {
+			e = noone;
+		}
+	}
 	if (e != noone) {
+		attacking = false;
+		attack_damage_done = false;
 		if (!variable_global_exists("quiz_opt") || !is_array(global.quiz_opt) || array_length(global.quiz_opt) < 4) {
 			global.quiz_opt = [0, 0, 0, 0];
 		}
@@ -165,13 +238,18 @@ if (!attacking && !dead && hurt_timer <= 0 && !(variable_global_exists("game_ove
 		global.quiz_enemy = e;
 		image_xscale = (e.x >= x) ? 1 : -1;
 
-		var n1 = irandom_range(2, 12);
-		var n2 = irandom_range(2, 12);
+		var n1 = 0;
+		var n2 = 0;
 		var ans = 0;
-		if (random(1) < 0.5) {
+		var qt = irandom(3);
+		if (qt == 0) {
+			n1 = irandom_range(2, 12);
+			n2 = irandom_range(2, 12);
 			global.quiz_question = string(n1) + " + " + string(n2) + " = ?";
 			ans = n1 + n2;
-		} else {
+		} else if (qt == 1) {
+			n1 = irandom_range(2, 12);
+			n2 = irandom_range(2, 12);
 			if (n2 > n1) {
 				var _t = n1;
 				n1 = n2;
@@ -179,6 +257,17 @@ if (!attacking && !dead && hurt_timer <= 0 && !(variable_global_exists("game_ove
 			}
 			global.quiz_question = string(n1) + " - " + string(n2) + " = ?";
 			ans = n1 - n2;
+		} else if (qt == 2) {
+			n1 = irandom_range(2, 9);
+			n2 = irandom_range(2, 9);
+			global.quiz_question = string(n1) + " x " + string(n2) + " = ?";
+			ans = n1 * n2;
+		} else {
+			var _div = irandom_range(2, 9);
+			var _q = irandom_range(2, 9);
+			var _prod = _div * _q;
+			global.quiz_question = string(_prod) + " : " + string(_div) + " = ?";
+			ans = _q;
 		}
 		var ci = irandom(3);
 		global.quiz_correct = ci;
@@ -251,12 +340,22 @@ if (hp <= 0 && !dead) {
 	return;
 }
 
-if (room == Room1 && hp > 0 && !dead) {
+if (hp > 0 && !dead) {
 	var _en = 0;
 	with (obj_par_enemy) {
 		_en += 1;
 	}
 	if (_en <= 0) {
-		room_goto(Room2);
+		if (room == Room1) {
+			room_goto(Room2);
+		} else if (room == Room2) {
+			room_goto(Room3);
+		} else if (room == Room3) {
+			global.quiz_active = false;
+			global.quiz_enemy = noone;
+			global.quiz_cooldown = 0;
+			global.quiz_pending_attack = false;
+			room_goto(RoomEnding);
+		}
 	}
 }

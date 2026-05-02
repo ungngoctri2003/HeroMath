@@ -96,14 +96,12 @@ draw_set_valign(fa_middle);
 if (global.font_start_vn != -1) {
 	draw_set_font(global.font_start_vn);
 }
-draw_set_color(make_color_rgb(52, 48, 78));
-draw_text_transformed(_px + 4, _py - 48 + 4, "Anh hùng toán học", 1.85, 1.85, -3);
 draw_set_color(make_color_rgb(82, 155, 235));
-draw_text_transformed(_px, _py - 38, "Anh hùng toán học", 1.85, 1.85, -3);
+draw_text_transformed(_px, _py - 38, "Anh hùng toán học", 1.85, 1.85, 0);
 draw_set_color(make_color_rgb(92, 82, 70));
-draw_text_ext(_px, _py + 44, "Nhấn phím cách (Space) hoặc Enter, hoặc bấm chuột vào khung hoặc nút bên dưới để chơi.", -1, _pw - 48);
+draw_text_ext(_px, _py + 44, "Tiêu diệt quái & Giải cứu công chúa", -1, _pw - 48);
 
-// Nut bat dau
+// Nut choi ngay
 var bx1 = btn_x1;
 var by1 = btn_y1;
 var bx2 = btn_x2;
@@ -123,7 +121,7 @@ draw_set_alpha(1);
 draw_roundrect_colour_ext(bx1, by1, bx2, by2, br, br, col_o, col_o, false);
 draw_roundrect_colour_ext(bx1, by1, bx2, by2, br, br, col_e, col_e, true);
 draw_set_color(c_white);
-draw_text_transformed(_px, by1 + 29, "BẮT ĐẦU", 1.32, 1.32, 0);
+draw_text_transformed(_px, by1 + 29, "CHƠI NGAY", 1.28, 1.28, 0);
 
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
