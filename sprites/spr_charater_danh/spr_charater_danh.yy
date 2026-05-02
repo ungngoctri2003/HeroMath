@@ -62,7 +62,7 @@
     },
     "name":"spr_charater_danh",
     "playback":1,
-    "playbackSpeed":200.0,
+    "playbackSpeed":300.0,
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",

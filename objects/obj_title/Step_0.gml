@@ -12,5 +12,11 @@ if (!_go && mouse_check_button_pressed(mb_left)) {
 }
 
 if (_go) {
+	global.score = 0;
+	global.quiz_active = false;
+	global.quiz_enemy = noone;
+	global.quiz_cooldown = 0;
+	global.quiz_pending_attack = false;
+	global.game_over = false;
 	room_goto(Room1);
 }

@@ -1,18 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"obj_slime_fire",
+  "%Name":"obj_bac_thang",
   "eventList":[],
   "managed":true,
-  "name":"obj_slime_fire",
+  "name":"obj_bac_thang",
   "overriddenProperties":[],
   "parent":{
     "name":"HeroMath",
     "path":"HeroMath.yyp",
   },
-  "parentObjectId":{
-    "name":"obj_par_enemy",
-    "path":"objects/obj_par_enemy/obj_par_enemy.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -31,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_slime_fire",
-    "path":"sprites/spr_slime_fire/spr_slime_fire.yy",
+    "name":"spr_bac_thang",
+    "path":"sprites/spr_bac_thang/spr_bac_thang.yy",
   },
   "spriteMaskId":null,
   "visible":true,
