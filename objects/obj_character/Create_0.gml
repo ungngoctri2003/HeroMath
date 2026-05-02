@@ -28,3 +28,27 @@ if (!variable_global_exists("score")) {
 if (!variable_global_exists("quiz_opt")) {
 	global.quiz_opt = [0, 0, 0, 0];
 }
+if (!variable_global_exists("_quiz_reduce_frac_str")) {
+	global._quiz_reduce_frac_str = function(_nn, _dd) {
+		if (_dd == 0) {
+			return "?";
+		}
+		var _sg = sign(_nn) * sign(_dd);
+		_nn = abs(floor(_nn));
+		_dd = abs(floor(_dd));
+		var _g1 = _nn;
+		var _g2 = _dd;
+		while (_g2 != 0) {
+			var _gt = _g1 mod _g2;
+			_g1 = _g2;
+			_g2 = _gt;
+		}
+		_g1 = max(1, _g1);
+		_nn = (_nn div _g1) * _sg;
+		_dd = _dd div _g1;
+		if (_dd == 1) {
+			return string(_nn);
+		}
+		return string(_nn) + "/" + string(_dd);
+	};
+}
