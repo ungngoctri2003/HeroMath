@@ -258,50 +258,50 @@ if (!dead && hurt_timer <= 0 && !(variable_global_exists("game_over") && global.
 
 		var _rf = global._quiz_reduce_frac_str;
 		var _frac_q = false;
-		var qt = (_tier == 0) ? irandom(8) : irandom(10);
+		var qt = irandom(3);
 		var n1 = 0;
 		var n2 = 0;
 		var ans = 0;
 
 		if (qt == 0) {
 			if (_tier == 0) {
-				n1 = irandom_range(15, 62);
-				n2 = irandom_range(15, 62);
+				n1 = irandom_range(5, 30);
+				n2 = irandom_range(5, 30);
 			} else if (_tier == 1) {
-				n1 = irandom_range(35, 199);
-				n2 = irandom_range(28, 199);
+				n1 = irandom_range(8, 50);
+				n2 = irandom_range(8, 50);
 			} else {
-				n1 = irandom_range(120, 499);
-				n2 = irandom_range(85, 499);
+				n1 = irandom_range(12, 99);
+				n2 = irandom_range(12, 99);
 			}
 			global.quiz_question = string(n1) + " + " + string(n2) + " = ?";
 			ans = n1 + n2;
 		} else if (qt == 1) {
 			if (_tier == 0) {
-				n1 = irandom_range(40, 120);
-				n2 = irandom_range(12, n1 - 8);
+				n1 = irandom_range(14, 40);
+				n2 = irandom_range(2, n1 - 2);
 			} else if (_tier == 1) {
-				n1 = irandom_range(90, 380);
-				n2 = irandom_range(25, n1 - 20);
+				n1 = irandom_range(25, 80);
+				n2 = irandom_range(5, n1 - 5);
 			} else {
-				n1 = irandom_range(250, 850);
-				n2 = irandom_range(60, n1 - 40);
+				n1 = irandom_range(35, 99);
+				n2 = irandom_range(8, n1 - 8);
 			}
 			if (n2 >= n1) {
-				n2 = irandom_range(5, max(6, n1 - 15));
+				n2 = max(1, n1 - 1);
 			}
 			global.quiz_question = string(n1) + " - " + string(n2) + " = ?";
 			ans = n1 - n2;
 		} else if (qt == 2) {
 			if (_tier == 0) {
-				n1 = irandom_range(7, 22);
-				n2 = irandom_range(7, 22);
+				n1 = irandom_range(2, 5);
+				n2 = irandom_range(2, 5);
 			} else if (_tier == 1) {
-				n1 = irandom_range(11, 35);
-				n2 = irandom_range(11, 35);
+				n1 = irandom_range(2, 9);
+				n2 = irandom_range(2, 9);
 			} else {
-				n1 = irandom_range(18, 45);
-				n2 = irandom_range(18, 45);
+				n1 = irandom_range(2, 10);
+				n2 = irandom_range(2, 10);
 			}
 			global.quiz_question = string(n1) + " × " + string(n2) + " = ?";
 			ans = n1 * n2;
@@ -309,14 +309,14 @@ if (!dead && hurt_timer <= 0 && !(variable_global_exists("game_over") && global.
 			var _div = 0;
 			var _q = 0;
 			if (_tier == 0) {
-				_div = irandom_range(7, 19);
-				_q = irandom_range(8, 24);
+				_div = irandom_range(2, 5);
+				_q = irandom_range(2, 10);
 			} else if (_tier == 1) {
-				_div = irandom_range(9, 28);
-				_q = irandom_range(10, 32);
+				_div = irandom_range(2, 9);
+				_q = irandom_range(2, 10);
 			} else {
-				_div = irandom_range(12, 39);
-				_q = irandom_range(14, 38);
+				_div = irandom_range(2, 10);
+				_q = irandom_range(2, 10);
 			}
 			var _prod = _div * _q;
 			global.quiz_question = string(_prod) + " : " + string(_div) + " = ?";

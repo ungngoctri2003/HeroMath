@@ -56,6 +56,7 @@
     {"id":{"name":"spr_bac_thang","path":"sprites/spr_bac_thang/spr_bac_thang.yy",},},
     {"id":{"name":"spr_backgroud_room_1","path":"sprites/spr_backgroud_room_1/spr_backgroud_room_1.yy",},},
     {"id":{"name":"spr_backgroud_room_2","path":"sprites/spr_backgroud_room_2/spr_backgroud_room_2.yy",},},
+    {"id":{"name":"spr_backgroud_start","path":"sprites/spr_backgroud_start/spr_backgroud_start.yy",},},
     {"id":{"name":"spr_background_room_3","path":"sprites/spr_background_room_3/spr_background_room_3.yy",},},
     {"id":{"name":"spr_bo","path":"sprites/spr_bo/spr_bo.yy",},},
     {"id":{"name":"spr_character_bi_danh","path":"sprites/spr_character_bi_danh/spr_character_bi_danh.yy",},},

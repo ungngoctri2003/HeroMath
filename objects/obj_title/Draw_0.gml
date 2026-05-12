@@ -1,74 +1,7 @@
-// Ve canh & UI phong cach Kenney (platformer vector pack trong du an)
+// Nen: spr_backgroud_start tren layer Background (RoomStart). Day chi ve UI.
 var _w = room_width;
 var _h = room_height;
 var _t = title_tw;
-
-draw_set_circle_precision(28);
-
-// Troi
-draw_rectangle_color(0, 0, _w, _h * 0.55,
-	make_color_rgb(120, 195, 245), make_color_rgb(120, 195, 245),
-	make_color_rgb(175, 228, 252), make_color_rgb(175, 228, 252), false);
-draw_rectangle_color(0, _h * 0.42, _w, _h * 0.76,
-	make_color_rgb(175, 228, 252), make_color_rgb(175, 228, 252),
-	make_color_rgb(210, 240, 252), make_color_rgb(210, 240, 252), false);
-
-// Doi xa
-draw_set_color(make_color_rgb(105, 178, 118));
-draw_triangle(-80, _h + 50, _w * 0.35, _h * 0.56, _w * 0.62, _h + 50, false);
-draw_triangle(_w * 0.28, _h + 50, _w * 0.68, _h * 0.52, _w + 120, _h + 50, false);
-
-draw_set_color(make_color_rgb(82, 158, 92));
-draw_triangle(-120, _h + 50, _w * 0.42, _h * 0.64, _w * 0.82, _h + 50, false);
-
-// Tham co
-draw_set_color(make_color_rgb(92, 188, 82));
-draw_rectangle(0, _h * .76, _w, _h, false);
-draw_set_color(make_color_rgb(118, 212, 98));
-draw_rectangle(0, _h * .76, _w, _h * .805, false);
-draw_set_color(make_color_rgb(68, 148, 65));
-for (var g = 0; g < 40; g++) {
-	var gx = (g * 131 + _t * 28) mod (_w + 24) - 12;
-	var gy = _h * 0.762;
-	draw_triangle(gx, gy + 12, gx + 5, gy, gx + 10, gy + 12, false);
-}
-
-// May
-draw_set_alpha(0.94);
-draw_set_color(c_white);
-for (var c = 0; c < 6; c++) {
-	var cx = (c * 265 + sin(_t * 0.75 + c * 1.1) * 38 + _t * 22 + c * 44) mod (_w + 140) - 70;
-	var cy = 26 + (c mod 3) * 20;
-	draw_circle(cx, cy, 28, false);
-	draw_circle(cx + 34, cy + 7, 36, false);
-	draw_circle(cx + 74, cy, 30, false);
-	draw_circle(cx + 30, cy - 11, 22, false);
-}
-draw_set_alpha(1);
-
-// Dong xu trang tri
-for (var u = 0; u < 6; u++) {
-	var ox = 110 + u * 210;
-	var oy = _h * 0.51 + sin(_t * 2 + u * 0.7) * 7;
-	var bob = sin(_t * 2.8 + u * 1.2) * 4;
-	draw_set_color(make_color_rgb(235, 188, 45));
-	draw_circle(ox + bob, oy, 17, false);
-	draw_set_color(make_color_rgb(255, 238, 130));
-	draw_circle(ox + bob - 4, oy - 4, 6, false);
-	draw_set_color(make_color_rgb(195, 135, 28));
-	draw_circle(ox + bob, oy, 17, true);
-}
-
-// Sao
-draw_set_color(c_white);
-for (var s = 0; s < 18; s++) {
-	var sx = (s * 101 + s * 17) mod _w;
-	var sy = (s * 47) mod max(1, floor(_h * 0.38));
-	var tw = 0.35 + 0.65 * abs(sin(_t * 2.8 + s));
-	draw_set_alpha(tw * 0.8);
-	draw_circle(sx, sy, 1 + (s mod 3), false);
-}
-draw_set_alpha(1);
 
 // Khung tieu de
 var _px = _w * 0.5;

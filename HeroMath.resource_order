@@ -28,6 +28,7 @@
     {"name":"spr_bac_thang","order":29,"path":"sprites/spr_bac_thang/spr_bac_thang.yy",},
     {"name":"spr_backgroud_room_1","order":9,"path":"sprites/spr_backgroud_room_1/spr_backgroud_room_1.yy",},
     {"name":"spr_backgroud_room_2","order":39,"path":"sprites/spr_backgroud_room_2/spr_backgroud_room_2.yy",},
+    {"name":"spr_backgroud_start","order":60,"path":"sprites/spr_backgroud_start/spr_backgroud_start.yy",},
     {"name":"spr_background_room_3","order":40,"path":"sprites/spr_background_room_3/spr_background_room_3.yy",},
     {"name":"spr_bo","order":44,"path":"sprites/spr_bo/spr_bo.yy",},
     {"name":"spr_character_bi_danh","order":4,"path":"sprites/spr_character_bi_danh/spr_character_bi_danh.yy",},
