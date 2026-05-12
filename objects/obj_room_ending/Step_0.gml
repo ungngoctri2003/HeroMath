@@ -8,22 +8,27 @@ if (gw < 8) {
 }
 
 var _px = gw * 0.5;
-var _py = gh * 0.13;
-var _pw = min(640, gw - 48);
-var _ph = 138;
+var _py = gh * 0.125;
+var _pw = min(640, gw - 56);
+var _ph = 172;
 var panel_l = _px - _pw * 0.5;
 var panel_t = _py - _ph * 0.5;
 var panel_r = _px + _pw * 0.5;
 var panel_b = _py + _ph * 0.5;
 
-var bx1 = _px - 150 * (gw / max(1, room_width));
-var bx2 = _px + 150 * (gw / max(1, room_width));
+var _btn_half = min(235, floor(gw * 0.5 - 20));
+if (_btn_half < 128) {
+	_btn_half = max(96, floor(gw * 0.5 - 14));
+}
+var bx1 = _px - _btn_half;
+var bx2 = _px + _btn_half;
 if (bx2 - bx1 > gw - 24) {
 	bx1 = 12;
 	bx2 = gw - 12;
 }
-var by1 = gh * 0.88 - 36;
-var by2 = gh * 0.88 + 32;
+var _bcy = gh * 0.87;
+var by1 = _bcy - 28;
+var by2 = _bcy + 28;
 
 var mx = device_mouse_x_to_gui(0);
 var my = device_mouse_y_to_gui(0);

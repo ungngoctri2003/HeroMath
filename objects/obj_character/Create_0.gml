@@ -22,6 +22,7 @@ global.hp_max = hp_max;
 attack_damage_done = false;
 dead = false;
 hurt_timer = 0;
+ending_arrived = false;
 if (!variable_global_exists("score")) {
 	global.score = 0;
 }

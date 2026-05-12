@@ -58,12 +58,47 @@ if (room == RoomStart) {
 
 if (room == RoomEnding) {
 	vsp = 0;
-	sprite_index = spr_character_dung_yen;
-	image_speed = idle_image_speed;
 	attacking = false;
-	image_xscale = 1;
 	global.hp = hp;
 	global.hp_max = hp_max;
+
+	var _cc = instance_nearest(x, y, obj_congchua);
+	if (_cc == noone) {
+		sprite_index = spr_idle;
+		image_speed = idle_image_speed;
+		ending_arrived = true;
+		return;
+	}
+
+	if (!variable_instance_exists(id, "ending_side_initialized")) {
+		ending_side_from_left = (x < _cc.x);
+		ending_side_initialized = true;
+	}
+
+	var _margin = 20;
+	var _dx_r = bbox_right - x;
+	var _dx_l = x - bbox_left;
+	var _tx;
+	if (ending_side_from_left) {
+		_tx = _cc.bbox_left - _margin - _dx_r;
+	} else {
+		_tx = _cc.bbox_right + _margin + _dx_l;
+	}
+	_tx = clamp(_tx, 48, room_width - 48);
+
+	if (abs(x - _tx) > 2) {
+		x += sign(_tx - x) * min(move_speed, abs(_tx - x));
+		image_xscale = (x < _tx) ? 1 : -1;
+		sprite_index = spr_walk;
+		image_speed = walk_image_speed;
+		ending_arrived = false;
+	} else {
+		x = _tx;
+		ending_arrived = true;
+		sprite_index = spr_idle;
+		image_speed = idle_image_speed;
+		image_xscale = (_cc.x >= x) ? 1 : -1;
+	}
 	return;
 }
 
