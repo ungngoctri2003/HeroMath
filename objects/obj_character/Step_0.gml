@@ -1,4 +1,14 @@
 if (dead) {
+	if (variable_instance_exists(id, "run_snd_voice") && run_snd_voice >= 0) {
+		if (audio_is_playing(run_snd_voice)) {
+			audio_stop_sound(run_snd_voice);
+		}
+		run_snd_voice = -1;
+	}
+	if (!die_sfx_played) {
+		audio_play_sound(sound_game_over, 40, false);
+		die_sfx_played = true;
+	}
 	sprite_index = spr_character_die;
 	image_index = 0;
 	image_speed = 0.15;
@@ -14,7 +24,20 @@ if (dead) {
 }
 
 if (hurt_timer > 0) {
+	if (variable_instance_exists(id, "run_snd_voice") && run_snd_voice >= 0) {
+		if (audio_is_playing(run_snd_voice)) {
+			audio_stop_sound(run_snd_voice);
+		}
+		run_snd_voice = -1;
+	}
+	if (!hurt_was_active) {
+		audio_play_sound(sound_bi_quai_can, 50, false);
+		hurt_was_active = true;
+	}
 	hurt_timer -= 1;
+	if (hurt_timer <= 0) {
+		hurt_was_active = false;
+	}
 	sprite_index = spr_character_bi_danh;
 	image_index = 0;
 	image_speed = 0.25;
@@ -34,6 +57,7 @@ if (variable_global_exists("quiz_pending_attack") && global.quiz_pending_attack)
 	sprite_index = spr_charater_danh;
 	image_index = 0;
 	image_speed = attack_image_speed;
+	audio_play_sound(sound_kiem_chem, 50, false);
 }
 
 if (variable_global_exists("quiz_cooldown") && global.quiz_cooldown > 0) {
@@ -41,12 +65,24 @@ if (variable_global_exists("quiz_cooldown") && global.quiz_cooldown > 0) {
 }
 
 if (variable_global_exists("quiz_active") && global.quiz_active) {
+	if (variable_instance_exists(id, "run_snd_voice") && run_snd_voice >= 0) {
+		if (audio_is_playing(run_snd_voice)) {
+			audio_stop_sound(run_snd_voice);
+		}
+		run_snd_voice = -1;
+	}
 	global.hp = hp;
 	global.hp_max = hp_max;
 	return;
 }
 
 if (room == RoomStart) {
+	if (variable_instance_exists(id, "run_snd_voice") && run_snd_voice >= 0) {
+		if (audio_is_playing(run_snd_voice)) {
+			audio_stop_sound(run_snd_voice);
+		}
+		run_snd_voice = -1;
+	}
 	sprite_index = spr_character_dung_yen;
 	image_speed = idle_image_speed;
 	attacking = false;
@@ -64,6 +100,12 @@ if (room == RoomEnding) {
 
 	var _cc = instance_nearest(x, y, obj_congchua);
 	if (_cc == noone) {
+		if (variable_instance_exists(id, "run_snd_voice") && run_snd_voice >= 0) {
+			if (audio_is_playing(run_snd_voice)) {
+				audio_stop_sound(run_snd_voice);
+			}
+			run_snd_voice = -1;
+		}
 		sprite_index = spr_idle;
 		image_speed = idle_image_speed;
 		ending_arrived = true;
@@ -99,6 +141,16 @@ if (room == RoomEnding) {
 		image_speed = idle_image_speed;
 		image_xscale = (_cc.x >= x) ? 1 : -1;
 	}
+	if (sprite_index == spr_walk) {
+		if (run_snd_voice < 0 || !audio_is_playing(run_snd_voice)) {
+			run_snd_voice = audio_play_sound(sound_chay_bo, 100, true);
+		}
+	} else if (variable_instance_exists(id, "run_snd_voice") && run_snd_voice >= 0) {
+		if (audio_is_playing(run_snd_voice)) {
+			audio_stop_sound(run_snd_voice);
+		}
+		run_snd_voice = -1;
+	}
 	return;
 }
 
@@ -110,6 +162,7 @@ if (!attacking && (mouse_check_button_pressed(mb_left) || mouse_check_button_pre
 	image_index = 0;
 	image_speed = attack_image_speed;
 	image_xscale = (mouse_x >= x) ? 1 : -1;
+	audio_play_sound(sound_kiem_chem, 50, false);
 }
 
 var move = keyboard_check(vk_right) - keyboard_check(vk_left);
@@ -640,6 +693,12 @@ if (!dead && hurt_timer <= 0 && !(variable_global_exists("game_over") && global.
 				}
 			}
 		}
+		if (variable_instance_exists(id, "run_snd_voice") && run_snd_voice >= 0) {
+			if (audio_is_playing(run_snd_voice)) {
+				audio_stop_sound(run_snd_voice);
+			}
+			run_snd_voice = -1;
+		}
 		global.hp = hp;
 		global.hp_max = hp_max;
 		return;
@@ -667,6 +726,21 @@ if (!attacking) {
 		image_speed = walk_image_speed;
 	} else {
 		image_speed = idle_image_speed;
+	}
+}
+
+var _grounded_run = place_meeting(x, y + 1, obj_ground) || feet_on_jump_surface;
+var _want_run_sfx = !attacking && (move != 0) && _grounded_run;
+if (_want_run_sfx) {
+	if (run_snd_voice < 0 || !audio_is_playing(run_snd_voice)) {
+		run_snd_voice = audio_play_sound(sound_chay_bo, 100, true);
+	}
+} else {
+	if (variable_instance_exists(id, "run_snd_voice") && run_snd_voice >= 0) {
+		if (audio_is_playing(run_snd_voice)) {
+			audio_stop_sound(run_snd_voice);
+		}
+		run_snd_voice = -1;
 	}
 }
 

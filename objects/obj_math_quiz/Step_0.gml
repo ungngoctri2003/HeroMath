@@ -48,6 +48,7 @@ global.quiz_enemy = noone;
 global.quiz_cooldown = ok ? 28 : 60;
 
 if (ok) {
+	audio_play_sound(sound_tl_dung, 50, false);
 	if (instance_exists(eid)) {
 		global.quiz_face_x = eid.x;
 	}
@@ -56,9 +57,11 @@ if (ok) {
 		global.score += 10;
 	}
 	if (instance_exists(eid)) {
+		audio_play_sound(sound_quai_bi_die, 55, false);
 		instance_destroy(eid);
 	}
 } else {
+	audio_play_sound(sound_tl_sai, 50, false);
 	with (obj_character) {
 		hp -= 22;
 		if (hp <= 0) {

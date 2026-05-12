@@ -22,7 +22,10 @@ global.hp_max = hp_max;
 attack_damage_done = false;
 dead = false;
 hurt_timer = 0;
+hurt_was_active = false;
+die_sfx_played = false;
 ending_arrived = false;
+run_snd_voice = -1;
 if (!variable_global_exists("score")) {
 	global.score = 0;
 }
